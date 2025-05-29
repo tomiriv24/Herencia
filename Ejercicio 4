@@ -1,0 +1,54 @@
+class Vehiculo:
+    def __init__(self, marca, modelo, anio):
+        self.marca = marca
+        self.modelo = modelo
+        self.anio = anio
+
+    def mostrar_detalles(self):
+        print(f"Marca: {self.marca}")
+        print(f"Modelo: {self.modelo}")
+        print(f"Año: {self.anio}")
+
+    def eficiencia_combustible(self):
+        raise NotImplementedError("Este método debe ser implementado por las subclases.")
+
+    def combustible_para_viaje(self, distancia_km):
+        eficiencia = self.eficiencia_combustible()
+        if eficiencia == 0:
+            return float('inf')
+        return distancia_km / eficiencia
+
+class Automovil(Vehiculo):
+    def __init__(self, marca, modelo, anio, eficiencia_km_l):
+        super().__init__(marca, modelo, anio)
+        self.eficiencia_km_l = eficiencia_km_l
+
+    def eficiencia_combustible(self):
+        return self.eficiencia_km_l
+
+    def mostrar_detalles(self):
+        super().mostrar_detalles()
+        print(f"Eficiencia de combustible: {self.eficiencia_km_l} km/l")
+
+class Motocicleta(Vehiculo):
+    def __init__(self, marca, modelo, anio, eficiencia_km_l):
+        super().__init__(marca, modelo, anio)
+        self.eficiencia_km_l = eficiencia_km_l
+
+    def eficiencia_combustible(self):
+        return self.eficiencia_km_l
+
+    def mostrar_detalles(self):
+        super().mostrar_detalles()
+        print(f"Eficiencia de combustible: {self.eficiencia_km_l} km/l")
+
+
+if __name__ == "__main__":
+    auto = Automovil("Toyota", "Corolla", 2020, 15)
+    moto = Motocicleta("Yamaha", "FZ", 2022, 30)
+
+    auto.mostrar_detalles()
+    print(f"Combustible necesario para 300 km: {auto.combustible_para_viaje(300):.2f} litros")
+    print("-----")
+    moto.mostrar_detalles()
+    print(f"Combustible necesario para 300 km: {moto.combustible_para_viaje(300):.2f} litros")
