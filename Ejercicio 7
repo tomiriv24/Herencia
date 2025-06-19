@@ -1,0 +1,24 @@
+class Instrumento:
+    def __init__(self, nombre, material):
+        self.nombre = nombre
+        self.material = material
+
+    def tipo_sonido(self):
+        print("Sonido general del instrumento.")
+
+    def tocar_nota(self):
+        pass
+
+class Guitarra(Instrumento):
+    def __init__(self):
+        super().__init__("Guitarra", "Madera")
+
+    def tocar_nota(self):
+        print("Tocando nota Mi")
+
+class Piano(Instrumento):
+    def __init__(self):
+        super().__init__("Piano", "Madera y metal")
+
+    def tocar_nota(self):
+        print("Tocando nota Do")
