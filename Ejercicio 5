@@ -1,0 +1,18 @@
+from datetime import date
+
+class Producto:
+    def __init__(self, nombre, precio, fecha_venc):
+        self.nombre = nombre
+        self.precio = precio
+        self.fecha_venc = fecha_venc
+
+    def aplicar_descuento(self):
+        pass
+
+class ProductoAlimenticio(Producto):
+    def aplicar_descuento(self):
+        return self.precio * 0.5
+
+class ProductoElectronico(Producto):
+    def aplicar_descuento(self):
+        return self.precio * 0.9
